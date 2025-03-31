@@ -1,0 +1,66 @@
+.footer {
+    color: var(--color-text-secondary);
+    padding: calc(var(--base-padding) * 0.7) var(--base-padding);
+    height: 50px;
+    text-align: center;
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--font-size-small);
+    position: relative;
+}
+
+.todoCount {
+    text-align: left;
+    flex-grow: 1;
+}
+
+.todoCount strong {
+    font-weight: var(--font-weight-normal);
+}
+
+.filters {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.filters li {
+    display: inline;
+    margin: 0 3px;
+}
+
+.filterButton {
+    color: inherit;
+    padding: 3px 7px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: var(--border-radius);
+}
+
+.filterButton:hover {
+    border-color: var(--color-accent-light);
+}
+
+.filterButtonSelected {
+    border-color: var(--color-accent);
+}
+
+.clearCompletedButton {
+    text-align: right;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+.clearCompletedButton:hover {
+    color: var(--color-text-primary);
+}
+
+.hidden {
+    visibility: hidden;
+}

@@ -1,0 +1,85 @@
+:root {
+    --color-background: #fffaf8;
+    --color-widget-background: #ffffff;
+    --color-text-primary: #4d4d4d;
+    --color-text-secondary: #a9a9a9;
+    --color-accent: #f8b195;
+    --color-accent-light: #fde4d8;
+    --color-border: #ededed;
+    --color-danger: red;
+    --color-success: #a8e6cf;
+    --color-shadow: rgba(0, 0, 0, 0.1);
+
+    --font-family-main: 'Manrope', Helvetica, Arial, sans-serif;
+    --font-size-large: 100px;
+    --font-size-medium: 24px;
+    --font-size-small: 14px;
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+
+    --base-padding: 15px;
+    --widget-width: 550px;
+    --border-radius: 3px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family-main);
+    font-size: var(--font-size-medium);
+    font-weight: var(--font-weight-light);
+    line-height: 1.4;
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+}
+
+input {
+    border: none;
+    outline: none;
+    background: none;
+}
+
+ul {
+    list-style: none;
+}
+
+.todoapp {
+    background: var(--color-widget-background);
+    margin: 10px 0 40px 0;
+    box-shadow: 0 2px 4px 0 var(--color-shadow);
+    width: var(--widget-width);
+}
+
+.main-title {
+    font-weight: 100;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-large);
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .todoapp {
+        max-width: 420px;
+    }
+}
+
+@media (max-width: 412px) {
+    .todoapp {
+        max-width: 360px;
+    }
+}

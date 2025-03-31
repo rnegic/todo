@@ -34,7 +34,7 @@ const Header = ({ onAddTodo, allCompleted, onToggleAll, hasTodos }: HeaderProps)
             <input
                 className={styles.newTodoInput}
                 type="text"
-                placeholder="Напишите вашу первую заметку"
+                placeholder="Напишите вашу первую заметку!"
                 value={inputValue}
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
