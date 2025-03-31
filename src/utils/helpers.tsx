@@ -4,6 +4,6 @@ export const generateId = (): string => {
     return uuidv4();
 };
 
-export const makePlural = (count: number, word: string): string => {
-    return count === 1 ? word : `${word}s`;
+export const makePlural = (count: number): string => {
+    return count === 1 ? 'todo' : 'todos';
 };

@@ -12,3 +12,18 @@ export interface TodoItemProps {
     onDelete: (id: string) => void;
     onEdit: (id: string, newText: string) => void;
 }
+
+export interface HeaderProps {
+    onAddTodo: (text: string) => void;
+    allCompleted: boolean;
+    onToggleAll: () => void;
+    hasTodos: boolean;
+}
+
+export interface FooterProps {
+    activeCount: number;
+    completedCount: number;
+    filter: FilterType;
+    onFilterChange: (filter: FilterType) => void;
+    onClearCompleted: () => void;
+}
