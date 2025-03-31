@@ -1,35 +1,66 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useMemo, useCallback } from 'react'
+import TodoList from '@/components/TodoList/TodoList';
+import { Todo } from '@/types';
+import { FILTERS, LOCAL_STORAGE_KEY } from '@/constants';
+import useLocalStorage from '@/hooks/useLocalStorage';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [todos, setTodos] = useLocalStorage<Todo[]>(LOCAL_STORAGE_KEY, []);
+
+  // const addTodo
+
+  const toggleTodo = useCallback((id: string) => {
+    setTodos(prevTodos =>
+      prevTodos.map(todo =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  }, [setTodos]);
+
+  const deleteTodo = useCallback((id: string) => {
+    setTodos(prevTodos => prevTodos.filter(todo => todo.id !== id));
+  }, [setTodos]);
+
+  const editTodo = useCallback((id: string, newText: string) => {
+    setTodos(prevTodos =>
+      prevTodos.map(todo =>
+        todo.id === id ? { ...todo, text: newText.trim() } : todo
+      )
+    );
+  }, [setTodos]);
+
+
+  const activeCount = useMemo(() => todos.filter(todo => !todo.completed).length, [todos]);
+
+  const visibleTodos = useMemo(() => {
+    switch (filter) {
+      case FILTERS.ACTIVE:
+        return todos.filter(todo => !todo.completed);
+      case FILTERS.COMPLETED:
+        return todos.filter(todo => todo.completed);
+      case FILTERS.ALL:
+      default:
+        return todos;
+    }
+  }, [todos]);
+
+  const hasTodos = todos.length > 0;
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1 className="main-title">todos</h1>
+      <section className="todoapp" data-testid="todo-app">
+        {hasTodos && (
+          <TodoList
+            todos={visibleTodos}
+            onToggle={toggleTodo}
+            onDelete={deleteTodo}
+            onEdit={editTodo}
+          />
+        )}
+      </section>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
